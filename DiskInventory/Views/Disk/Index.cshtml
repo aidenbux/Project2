@@ -18,14 +18,15 @@
     <tbody>
         @foreach (var disk in Model)
         {
-            <tr>
-                <td>@disk.DiskId</td>
-                <td>@disk.DiskName</td>
-                <td>@disk.ReleaseDate</td>
-                <td>@disk.GenreId</td>
-                <td>@disk.StatusId</td>
-                <td>@disk.DiskTypeId</td>
-            </tr>
+        <tr>
+            <td>@disk.DiskId</td>
+            <td>@disk.DiskName</td>
+            <td>@disk.ReleaseDate</td>
+            <td>@disk.Genre.Description</td>
+            <td>@disk.DiskType.Description</td>
+            <td>@disk.Status.Description</td>
+
+        </tr>
         }
     </tbody>
 </table>
