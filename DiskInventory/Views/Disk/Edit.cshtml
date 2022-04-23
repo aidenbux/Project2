@@ -1,6 +1,6 @@
 ﻿@model Disk
 @{ 
-    string title = ViewBag.Action + "Disk";
+    string title = ViewBag.Action + " Disk";
     ViewBag.Title = title;
 }
 
@@ -51,5 +51,5 @@
         <input type="hidden" asp-for="DiskId" />
         <br />
         <button type="submit" class="btn btn-primary">@ViewBag.Action</button>
-        <a asp-controller="Disk" asp-action="List" class="btn btn-primary">Cancel</a>
+        <a asp-controller="Disk" asp-action="Index" class="btn btn-primary">Cancel</a>
     </form>
