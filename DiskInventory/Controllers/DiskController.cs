@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DiskInventory.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace DiskInventory.Controllers
 {
@@ -16,8 +17,14 @@ namespace DiskInventory.Controllers
         }
         public IActionResult Index()
         {
-            List<Disk> disks = context.Disks.OrderBy(d => d.DiskName).ThenBy(b => b.ReleaseDate).ToList();
+            List<Disk> disks = context.Disks.OrderBy(d => d.DiskName).Include(g => g.Genre).Include(s => s.Status).Include(t => t.DiskType).ToList();
             return View(disks);
         }
+
+        //[HttpGet]
+        //public IActionResult Add()
+        //{
+        //    ViewBag.Action =""
+        //} //will not commit rn
     }
 }
