@@ -10,8 +10,8 @@
     <div asp-validation-summary="All" class="text-danger"></div>
 
     <div class="form-group">
-        <label asp-for="DiskId"></label>
-        <select asp-for="DiskId" class="form-control">
+        <label asp-for="CurrentVM.DiskId"></label>
+        <select asp-for="CurrentVM.DiskId" class="form-control">
             <option value="">Select a Disk</option>
             @foreach (Disk d in Model.Disks)
             {
@@ -21,8 +21,8 @@
     </div>
 
     <div class="form-group">
-        <label asp-for="BorrowerId"></label>
-        <select asp-for="BorrowerId" class="form-control">
+        <label asp-for="CurrentVM.BorrowerId"></label>
+        <select asp-for="CurrentVM.BorrowerId" class="form-control">
             <option value="">Select a Borrower</option>
             @foreach (Borrower d in Model.Borrowers)
             {
@@ -32,15 +32,15 @@
     </div>
 
     <div class="form-group">
-        <label asp-for="BorrowedDate">Borrowed Date</label>
-        <input asp-for="BorrowedDate" type="date" class="form-control" />
+        <label asp-for="CurrentVM.BorrowedDate">Borrowed Date</label>
+        <input asp-for="CurrentVM.BorrowedDate" type="date" class="form-control" />
     </div>
     <div class="form-group">
-        <label asp-for="ReturnedDate">Returned Date</label>
-        <input asp-for="ReturnedDate" type="date" class="form-control" />
+        <label asp-for="CurrentVM.ReturnedDate">Returned Date</label>
+        <input asp-for="CurrentVM.ReturnedDate" type="date" class="form-control" />
     </div>
 
-    <input type="hidden" asp-for="DiskHasBorrowerId" />
+    <input type="hidden" asp-for="CurrentVM.DiskHasBorrowerId" />
     <button type="submit" class="btn btn-primary">@ViewBag.Action</button>
     <a asp-controller="DiskHasBorrower" asp-action="Index" class="btn btn-primary">Cancel</a>
 </form>
