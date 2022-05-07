@@ -61,15 +61,22 @@ namespace DiskInventory.Controllers
                 checkout.ReturnedDate = diskhasborrowerviewmodel.CurrentVM.ReturnedDate;
                 if (checkout.DiskHasBorrowerId == 0)
                 {
-                    context.DiskHasBorrowers.Add(checkout);
+                    //context.DiskHasBorrowers.Add(checkout);
+                    context.Database.ExecuteSqlRaw("execute sp_ins_disk_has_borrower @p0, @p1, @p2, @p3", parameters: new[] {
+                    checkout.BorrowerId.ToString(), checkout.DiskId.ToString(), checkout.BorrowedDate.ToString(), checkout.ReturnedDate?.ToString() });
+                    
                     TempData["message"] = "Checkout Added.";
+
                 } 
                 else
                 {
-                    context.DiskHasBorrowers.Update(checkout);
+                    //context.DiskHasBorrowers.Update(checkout);
+                    context.Database.ExecuteSqlRaw("execute sp_upd_disk_has_borrower @p0, @p1, @p2, @p3, @p4", parameters: new[] {
+                    checkout.DiskHasBorrowerId.ToString(), checkout.BorrowerId.ToString(), checkout.DiskId.ToString(), checkout.BorrowedDate.ToString(), checkout.ReturnedDate?.ToString() });
+
                     TempData["message"] = "Checkout Updated.";
                 }
-                context.SaveChanges();
+                //context.SaveChanges();
                 return RedirectToAction("Index", "DiskHasBorrower");
             }
             ViewBag.Action = (diskhasborrowerviewmodel.CurrentVM.DiskHasBorrowerId == 0) ? "Add" : "Edit";

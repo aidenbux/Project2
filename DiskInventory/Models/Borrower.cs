@@ -19,6 +19,8 @@ namespace DiskInventory.Models
         [Required(ErrorMessage = "Please Enter Borrower First Name.")]
         public string Fname { get; set; }
         [Required(ErrorMessage = "Please Enter Borrower Phone Number.")]
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$",
+                   ErrorMessage = "Entered phone format is not valid.")]
         public string PhoneNum { get; set; }
 
         public virtual ICollection<DiskHasBorrower> DiskHasBorrowers { get; set; }

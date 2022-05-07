@@ -76,6 +76,7 @@ namespace DiskInventory.Controllers
         {
             context.Disks.Remove(disk);
             context.SaveChanges();
+            context.Database.ExecuteSqlRaw("execute sp_del_disk @p0", parameters: new[] { disk.DiskId.ToString() });
             return RedirectToAction("Index", "Disk");
         }
     }
